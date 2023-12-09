@@ -1,7 +1,15 @@
-﻿namespace WebAPITest.Contracts.ConsumedEvents
+﻿using FluentValidation;
+
+namespace API.Contracts.ConsumedEvents
 {
-    public class ConsumedEventDto
+    public record ConsumedEventDto(DateTime EventDateTime);
+
+
+    public class ConsumedEventDtoValidator : AbstractValidator<ConsumedEventDto>
     {
-        public DateTime EventDateTime { get; set; }
+        public ConsumedEventDtoValidator()
+        {
+            RuleFor(dto => dto.EventDateTime).NotEmpty();
+        }
     }
 }

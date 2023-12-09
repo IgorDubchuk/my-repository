@@ -1,6 +1,4 @@
-﻿namespace WebAPITest.Contracts.ConsumedEvents
+﻿namespace API.Contracts.ConsumedEvents
 {
-    public class ProcessEventCommandDto
-    {
-    }
+    public record ProcessEventCommandDto();
 }

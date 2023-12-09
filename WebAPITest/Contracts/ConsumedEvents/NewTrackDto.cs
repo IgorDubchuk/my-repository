@@ -1,7 +1,4 @@
-﻿namespace WebAPITest.Contracts.ConsumedEvents
+﻿namespace API.Contracts.ConsumedEvents
 {
-    public class NewTrackDto : ConsumedEventDto
-    {
-        public string Name { get; set; }
-    }
+    public record NewTrackDto(DateTime EventDateTime, string Name) : ConsumedEventDto(EventDateTime);
 }

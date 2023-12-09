@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPITest.API.Controllers.Test.V2
+namespace API.Controllers.Test.V2
 {
     //[ApiController]
     [ApiVersion("1.0")]

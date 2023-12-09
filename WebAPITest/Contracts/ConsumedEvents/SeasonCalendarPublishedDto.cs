@@ -1,15 +1,26 @@
-﻿namespace WebAPITest.Contracts.ConsumedEvents
+﻿using FluentValidation;
+
+namespace API.Contracts.ConsumedEvents
 {
-    public class SeasonCalendarPublishedDto : ConsumedEventDto
+    public record SeasonCalendarPublishedDto(
+        DateTime EventDateTime,
+        short Year,
+        IEnumerable<SeasonCalendarRaceDto> Races) : ConsumedEventDto(EventDateTime);
+
+    public record SeasonCalendarRaceDto(
+        string TrackName,
+        byte NumberInSeason,
+        string Name,
+        DateTime Date);
+
+
+    public class SeasonCalendarPublishedDtoValidator : AbstractValidator<SeasonCalendarPublishedDto>
     {
-        public short Year { get; set; }
-        public IEnumerable<SeasonCalendarRaceDto> Races { get; set; } = Enumerable.Empty<SeasonCalendarRaceDto>();
-    }
-    public class SeasonCalendarRaceDto
-    {
-        public string TrackName { get; set; }
-        public byte NumberInSeason { get; set; }
-        public string Name { get; set; }
-        public DateTime Date { get; set; }
+        public SeasonCalendarPublishedDtoValidator()
+        {
+            RuleFor(dto => dto.EventDateTime).NotEmpty();
+            RuleFor(dto => dto.Year).NotEmpty();
+            RuleFor(dto => dto.Races).NotEmpty();
+        }
     }
 }

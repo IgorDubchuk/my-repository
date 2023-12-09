@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using WebAPITest.Application.Interfaces;
-using WebAPITest.Application.Services;
-using WebAPITest.Domain.Interfaces;
-using WebAPITest.Domain.Services;
-using WebAPITest.Infrastructure.Persistence.Repositories;
-using WebAPITest.Infrastructure.Persistence.Repositories.Interfaces;
+using Application.Interfaces;
+using Application.Services;
+using Infrastructure.Persistence.Repositories;
+using Infrastructure.Persistence.Repositories.Interfaces;
 
-namespace WebAPITest
+namespace API
 {
     public static class DependencyInjection
     {
@@ -38,14 +36,17 @@ namespace WebAPITest
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddSingleton<IDictionaryCacheService, DictionaryCacheService>();
             services.AddTransient<IEventSourcingService, EventSourcingService>();
             services.AddSingleton<IEventSourcingSingletonService, EventSourcingSingletonService>();
             services.AddTransient<IEventService, EventService>();
+            services.AddTransient<TestService>();
             return services;
         }
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+            services.AddTransient<IBaseRepository, BaseRepository>();
             services.AddTransient<IEventRepository, EventRepository> ();
             services.AddTransient<ITrackRepository, TrackRepository>();
             services.AddTransient<ISeasonRepository, SeasonRepository>();

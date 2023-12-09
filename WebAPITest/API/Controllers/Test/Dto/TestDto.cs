@@ -1,4 +1,4 @@
-﻿namespace WebAPITest.API.Controllers.Test.Dto
+﻿namespace API.Controllers.Test.Dto
 {
     public class TestDto
     {

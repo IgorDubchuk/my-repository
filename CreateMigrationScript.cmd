@@ -1,10 +1,10 @@
 echo off
 rem Название создаваемой EF Миграции
-set migrationName=addNewConsumedEventStateError
+set migrationName=reorganizeDictionaries
 rem Название создаваемого файла со скриптом SQL
-set scriptFileName=V5_addNewConsumedEventStateError.sql
+set scriptFileName=V6_reorganizeDictionaries.sql
 rem Название последней EF Миграции, от которой берутся изменения для генерации SQL скрипта
-set lastMigrationName=addNewConsumedEventStateProcessing
+set lastMigrationName=addNewConsumedEventStateError
 
 set projectsPath=%cd%
 set entryProject="%projectsPath%\WebAPITest\WebAPITest.csproj"
